@@ -28,18 +28,23 @@ def sol_Jacobi(A, b):
     LmU = A - D
 
     # Paso 4: Término independiente transformado
-    d = Dinv @ b
+
+    d = np.dot(Dinv, b)
+    #d = Dinv @ b
 
     # Paso 5: Matriz de iteración T
-    T = -Dinv @ LmU
+    T = np.dot(-Dinv, LmU)
+    #T = -Dinv @ LmU
 
     # Paso 6: Iteraciones
     for k in range(iterMax):
         # Paso 7: Actualizar solución
-        xk = T @ xk + d
+        xk = np.dot(T, xk) + d
+        #xk = T @ xk + d
 
         # Paso 8: Calcular error residual
-        er = np.linalg.norm(A @ xk - b)
+        er = np.linalg.norm(np.dot(A, xk) - b)
+        #er = np.linalg.norm(A @ xk - b)
 
         # Paso 9: Verificar convergencia
         if er < tol:
