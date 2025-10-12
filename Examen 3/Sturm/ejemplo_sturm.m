@@ -12,8 +12,8 @@ T=[2 1 0 0 0;
    0 0 1 2 1;
    0 0 0 1 2];
 
-a=diag(T)
-b=diag(T,1) % b=diag(T,-1); Porque T es simetrica
+a=diag(T);
+b=diag(T,1); % b=diag(T,-1); Porque T es simetrica
 
 m=length(a);
 
