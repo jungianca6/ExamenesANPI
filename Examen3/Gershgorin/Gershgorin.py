@@ -32,4 +32,5 @@ print(Ints)
 
 Intervalo = [np.min(Ints[:, 0]), np.max(Ints[:, 1])]
 print("\nIntervalo global:")
+print(Intervalo[0], Intervalo[1])
 print(Intervalo)
