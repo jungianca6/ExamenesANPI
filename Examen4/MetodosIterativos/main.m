@@ -9,7 +9,7 @@ f=@(x,y) x+y;
 a=0;
 b=1;
 y0=1;
-n=60;
+n=6;
 
 %Gráfica de la solución
 hold on

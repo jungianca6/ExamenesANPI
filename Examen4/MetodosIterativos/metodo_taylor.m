@@ -1,5 +1,4 @@
 function [x, y] = metodo_taylor(fsym, a, b, y0, n, p)
-  % MÉTODO DE TAYLOR DE ORDEN p (versión simbólica)
   % fsym: función simbólica f(x,y)
   % a,b : intervalo
   % y0  : condición inicial
