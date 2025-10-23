@@ -2,18 +2,22 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-def predictor_corrector(f,a,b,y0,n):
-    h=(b-a)/n
-    x=np.linspace(a,b,n+1)
-    y=np.zeros(n+1)
-    y[0]=y0
+def RK3(f,a,b,y0,n):
+    h = (b-a)/n
+    x= np.linspace(a,b,n+1)
+    y = np.zeros(n+1)
+
+    y[0]= y0
 
     for k in range(n):
-        K1 = f(x[k], y[k])
-        K2 = f(x[k]+h, y[k]+h*K1)
-        y[k+1]= y[k] + h/2*(K1+K2)
+        K1= f(x[k],y[k])
+        K2 = f(x[k]+h/2,y[k]+(h/2)*K1)
+        K3= f(x[k]+h,y[k]-h*K1+2*h*K2)
+
+        y[k+1] = y[k] +(h/6)*(K1+4*K2+K3)
 
     return x,y
+
 
 def f(x, y):
     return x + y
@@ -22,10 +26,10 @@ def f(x, y):
 a = 0
 b = 1
 y0 = 1
-n = 5
+n = 10
 
 # Calcular solución con Euler
-x, y_aprox = predictor_corrector(f, a, b, y0, n)
+x, y_aprox = RK3(f, a, b, y0, n)
 
 print("Puntos x:", x)
 print("Aproximación y:", y_aprox)
@@ -41,7 +45,7 @@ plt.figure(figsize=(10, 6))
 plt.plot(x_exact, y_exact, 'b', label='Solución exacta: $y = 2e^x - x - 1$', linewidth=2)
 
 # Graficar solución aproximada (stem plot rojo)
-plt.stem(x, y_aprox, linefmt='r-', markerfmt='ro', basefmt=' ', label='Método de Predictor')
+plt.stem(x, y_aprox, linefmt='r-', markerfmt='ro', basefmt=' ', label='Método de RK3')
 
 plt.xlabel('x')
 plt.ylabel('y')
