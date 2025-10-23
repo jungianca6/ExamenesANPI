@@ -50,11 +50,11 @@ plt.figure(figsize=(10, 6))
 plt.plot(x_exact, y_exact, 'b', label='Solución exacta: $y = 2e^x - x - 1$', linewidth=2)
 
 # Graficar solución aproximada (stem plot rojo)
-plt.plot(x, y_aprox, 'r', label='Método de Euler 2do Orden',linewidth=2)
+plt.plot(x, y_aprox, 'r', label='Método de Euler 2do Orden',linewidth=1)
 
 plt.xlabel('x')
 plt.ylabel('y')
-plt.title('Solución de EDO: $y\' = x + y$')
+plt.title('Solución de EDO 2° orden: $y\'\' = x - y\' - y$')
 plt.legend()
 plt.grid(True, alpha=0.3)
 plt.show()
