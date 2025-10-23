@@ -5,6 +5,7 @@ from matplotlib import pyplot as plt
 def adams2(f,a,b,y0,n):
     h = (b-a)/n
     x= np.linspace(a,b,n+1)
+    #x = a + h * np.arange(n + 1)  # genera a, a+h, ..., b
     y = np.zeros(n+1)
 
     y[0]= y0
