@@ -12,6 +12,7 @@ def cota_interpolacion(f,a,b,xv,x_0):
     fds= sp.diff(fs,x,nPlusOne)
     fdn= sp.lambdify(x,fds, 'numpy')
 
+
     x_exact = np.linspace(a, b, 1000)
     y_exact = abs(fdn(x_exact))
     plt.plot(x_exact, y_exact, label="Función")
@@ -39,12 +40,24 @@ def cota_interpolacion(f,a,b,xv,x_0):
     return ct
 
 def f(x):
-    return sp.log(sp.asin(x)) / sp.log(x)
+    return sp.exp(x/2)
 
-a=0.1
-b=0.8
-xv= np.array([0.1, 0.2, 0.3, 0.4 ,0.5 ,0.6, 0.7, 0.8])
-x_0= 0.55
+a=0
+b=3
+xv= np.array([0,1.25,1.5,2,3])
+x_0=0.2
 
 cota=cota_interpolacion(f,a,b,xv,x_0)
 print(cota)
+
+"""
+x_exact = np.linspace(a, b, 1000)  # Equivalente a a:0.0001:b
+y_exact = np.log(x_exact)  # Solución exacta
+
+plt.plot(x_exact, y_exact, label="Función")
+plt.title("Funcion de cota")
+plt.grid()
+plt.legend()
+plt.show()
+
+"""
