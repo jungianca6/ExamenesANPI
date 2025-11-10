@@ -1,6 +1,8 @@
 import numpy as np
 import sympy as sp
 import scipy.optimize as opt
+from matplotlib import pyplot as plt
+
 
 def cota_interpolacion(f,a,b,xv,x_0):
     x = sp.symbols('x')
@@ -10,11 +12,20 @@ def cota_interpolacion(f,a,b,xv,x_0):
     fds= sp.diff(fs,x,nPlusOne)
     fdn= sp.lambdify(x,fds, 'numpy')
 
+    x_exact = np.linspace(a, b, 1000)
+    y_exact = abs(fdn(x_exact))
+    plt.plot(x_exact, y_exact, label="Función")
+    plt.title("Funcion de cota")
+    plt.grid()
+    plt.legend()
+    plt.show()
+
     # Calcular el máximo
     def newfun(x):
-        return -fdn(x)
+        return -abs(fdn(x))
 
     xmax = opt.fminbound(newfun, a, b)
+    print(xmax)
 
     alphamax= abs(fdn(xmax))
 
